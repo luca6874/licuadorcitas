@@ -1,0 +1,38 @@
+import javax.swing.*;
+import java.awt.*;
+
+public class Ventana extends JFrame {
+
+    public Ventana() {
+        super("Ventana Java");
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new BorderLayout(10, 10));
+        setSize(420, 220);
+        setLocationRelativeTo(null);
+
+        JLabel titulo = new JLabel("Hola desde una ventana Java", SwingConstants.CENTER);
+        titulo.setFont(new Font("SansSerif", Font.BOLD, 22));
+
+        JButton boton = new JButton("Cerrar");
+        boton.addActionListener(e -> dispose());
+
+        JPanel centro = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(10, 10, 10, 10);
+        centro.add(titulo, gbc);
+
+        JPanel pie = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        pie.add(boton);
+
+        add(centro, BorderLayout.CENTER);
+        add(pie, BorderLayout.SOUTH);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            Ventana ventana = new Ventana();
+            ventana.setVisible(true);
+        });
+    }
+}
